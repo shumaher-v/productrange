@@ -35,7 +35,34 @@
     </style>
     <input class="form-control" type="text" placeholder="Введите бренд (на русском или английском)" id="search-text" onkeyup="tableSearch()">
     <table class="table table-striped" id="info-table" border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
-        <col class="col0">
+      <script>
+        function () {
+        var app = "https://script.google.com/macros/s/AKfycbzCus6mTW7OeMEY7VYwH-Rr0RxYhuXT5qUuHZLBNZ9N8aJJ0O8E/exec",
+            output = '',
+            xhr = new XMLHttpRequest();
+        xhr.open('GET', app);
+        xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status == 200) {
+        try {
+            var r = JSON.parse(xhr.responseText),
+                header = r["header"],
+                data = r["data"];
+            output += "<thead><tr><td>" + header[0][0] + "</td><td>" + header[0][1] + "</td></tr></thead><tbody>" <!--Собрали голову-->
+            for (var i = 0; i < data.length; i++){
+                  var obj = r["data"][i];
+                  output += "<tr><td>" + obj[0] + "</td><td>" + obj[1] + "</td></tr>"; <!--Собрали тело таблицы-->
+            }
+        } catch(e) {}
+     } 
+   output += "</tbody>"
+   document.getElementById('info-table').innerHTML = output;
+
+   }
+   xhr.send()
+})()
+      </script>
+      <!-- <col class="col0">
         <col class="col1">
         <thead>
           <tr class="row0">
@@ -2999,8 +3026,8 @@
           <tr class="row739">
             <td class="column0 style0 s">HANIxHANI</td>
             <td class="column1 style0 s">HANIxHANI</td>
-          </tr>
-        </tbody>
+          </tr> 
+        </tbody> -->
     </table>    
     <script>
     function tableSearch() {
