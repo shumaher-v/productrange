@@ -48,9 +48,10 @@
             var r = JSON.parse(xhr.responseText),
                 header = r["header"],
                 data = r["data"],
-				table = document.getElementById('info-table');
-				table.getElementsByTagName('thead')[0].innerHTML += '<tr><td>' + header[0][0] + '</td></tr>';
-				table.getElementsByTagName('thead')[1].innerHTML += '<tr><td>' + header[0][1] + '</td></tr>'; //Собрали голову таблицы
+		table = document.getElementById('info-table');
+	    console.log(header);
+	    table.getElementsByTagName('thead')[0].innerHTML += '<tr><td>' + header[0][0] + '</td></tr>';
+	    table.getElementsByTagName('thead')[1].innerHTML += '<tr><td>' + header[0][1] + '</td></tr>'; //Собрали голову таблицы
             for (var i = 0; i < data.length; i++){
                   var obj = r["data"][i];
                   table.getElementsByTagName('tbody')[i].innerHTML += '<tr><td>' + obj[0] + '</td><td>' + obj[1] + '</td></tr>';
