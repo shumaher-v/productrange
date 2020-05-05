@@ -34,7 +34,7 @@
       body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
     </style>
     <input class="form-control" type="text" placeholder="Введите бренд (на русском или английском)" id="search-text" onkeyup="tableSearch()">
-    <table class="table table-striped" id="info-table">
+    <table class="productrange" id="info-table"></table>   
       <script>
         function () {
         var app = "https://script.google.com/macros/s/AKfycbzCus6mTW7OeMEY7VYwH-Rr0RxYhuXT5qUuHZLBNZ9N8aJJ0O8E/exec",
@@ -3026,8 +3026,7 @@
             <td class="column0 style0 s">HANIxHANI</td>
             <td class="column1 style0 s">HANIxHANI</td>
           </tr> 
-        </tbody> -->
-    </table>    
+        </tbody> --> 
     <script>
     function tableSearch() {
     var phrase = document.getElementById('search-text');
