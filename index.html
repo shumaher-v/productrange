@@ -36,7 +36,7 @@
     <input class="form-control" type="text" placeholder="Введите бренд (на русском или английском)" id="search-text" onkeyup="tableSearch()">
     <table class="productrange" id="info-table"></table>   
       <script>
-        function () {
+        function tableJSON () {
         var app = "https://script.google.com/macros/s/AKfycbzCus6mTW7OeMEY7VYwH-Rr0RxYhuXT5qUuHZLBNZ9N8aJJ0O8E/exec",
             output = '',
             xhr = new XMLHttpRequest();
@@ -47,19 +47,20 @@
         try {
             var r = JSON.parse(xhr.responseText),
                 header = r["header"],
-                data = r["data"];
-            output += "<thead><tr><td>" + header[0][0] + "</td><td>" + header[0][1] + "</td></tr></thead><tbody>" <!--Собрали голову-->
+                data = r["data"],
+				table = document.getElementById('info-table');
+				table.getElementsByTagName('thead')[0].innerHTML += '<tr><td>' + header[0][0] + '</td></tr>';
+				table.getElementsByTagName('thead')[1].innerHTML += '<tr><td>' + header[0][1] + '</td></tr>'; //Собрали голову таблицы
             for (var i = 0; i < data.length; i++){
                   var obj = r["data"][i];
-                  output += "<tr><td>" + obj[0] + "</td><td>" + obj[1] + "</td></tr>"; <!--Собрали тело таблицы-->
+                  table.getElementsByTagName('tbody')[i].innerHTML += '<tr><td>' + obj[0] + '</td><td>' + obj[1] + '</td></tr>';
+				//Собрали тело таблицы
             }
         } catch(e) {}
      } 
-   output += "</tbody>"
-   document.getElementById('info-table').innerHTML = output;
-
    }
-   }
+   xhr.send()
+}
       </script>
       <!-- <col class="col0">
         <col class="col1">
